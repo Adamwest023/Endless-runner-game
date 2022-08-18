@@ -20,6 +20,9 @@
 #layer4,
 #layer3,
 #layer2,
-#layer1 {
+#layer1,
+#enemy_fly,
+#enemy_plant,
+#enemy_spider_big {
     display: none;
 }

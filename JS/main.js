@@ -2,6 +2,11 @@
 import { Player } from './player.js';
 import { InputHandler } from './input.js';
 import { Background } from './background.js';
+import {
+    FlyingEnemy,
+    GroundEnemy,
+    ClimbingEnemy
+} from './enemies.js';
 
 //waits for all of our elements to load before any code runs 
 window.addEventListener('load', function () {
@@ -21,15 +26,28 @@ window.addEventListener('load', function () {
             this.background = new Background(this);
             this.player = new Player(this);
             this.input = new InputHandler();
+            this.enemies = [];
+            this.enemyTimer = 0;
+            this.enemyInterval = 1000;
         }
         update(deltaTime) {
             //calls player update method
             this.background.update();
             this.player.update(this.input.keys, deltaTime);
+            //handle adding enemies
+            if (this.enemyTimer > this.enemyInterval) {
+                this.addEnemy();
+                this.enemyTimer = 0;
+            } else {
+                this.enemyTimer += deltaTime;
+            }
         }
         draw(context) {
             this.background.draw(context);
             this.player.draw(context);
+        }
+        addEnemy() {
+            this.enemies.push(new FlyingEnemy(this))
         }
     }
 
