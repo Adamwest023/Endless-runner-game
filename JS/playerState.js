@@ -18,7 +18,10 @@ export class Sitting extends State {
         this.player = player;
     }
     enter() {
+        //resets our sprite to beginning of frame
+        this.player.frameX = 0;
         this.player.frameY = 5;
+        this.player.maxFrame = 4;
     }
     //if we are in this state we want to listen to see what key will switch us to another state
     handleInput(input) {
@@ -32,9 +35,13 @@ export class Running extends State {
     constructor(player) {
         super("RUNNING");
         this.player = player;
+        this.player.maxFrame = 6;
+
     }
     enter() {
+        this.player.frameX = 0;
         this.player.frameY = 3;
+
     }
     handleInput(input) {
         if (input.includes('ArrowDown')) {
@@ -52,8 +59,10 @@ export class Jumping extends State {
     }
     enter() {
         if (this.player.onGround()) this.player.vy -= 25;
-
+        this.player.frameX = 0;
         this.player.frameY = 1;
+        this.player.maxFrame = 6;
+
     }
     handleInput(input) {
         if (this.player.vy > this.player.weight) {
@@ -67,7 +76,9 @@ export class Falling extends State {
         this.player = player;
     }
     enter() {
+        this.player.frameX = 0;
         this.player.frameY = 2;
+        this.player.maxFrame = 6;
     }
     handleInput(input) {
         if (this.player.onGround()) {

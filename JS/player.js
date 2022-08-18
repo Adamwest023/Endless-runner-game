@@ -16,10 +16,10 @@ export class Player {
         //frame animation
         this.frameX = 0;
         this.frameY = 0;
-        this.maxFrame = 5;
         this.fps = 20;
         this.frameInterval = 1000 / this.fps;
-        this.frameTimer = 0;
+        this.frameTimer = 0
+        this.maxFrame = 1;
         this.speed = 0;
         this.maxSpeed = 10;
         //for vertical speed
@@ -59,7 +59,6 @@ export class Player {
         } else {
             this.frameTimer += deltaTime;
         }
-
     }
 
     draw(context) {

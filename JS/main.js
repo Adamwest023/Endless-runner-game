@@ -16,11 +16,10 @@ window.addEventListener('load', function () {
             this.height = height;
             this.player = new Player(this);
             this.input = new InputHandler();
-
         }
         update(deltaTime) {
             //calls player update method
-            this.player.update(this.input.keys,deltaTime);
+            this.player.update(this.input.keys, deltaTime);
         }
         draw(context) {
 
@@ -44,5 +43,5 @@ window.addEventListener('load', function () {
         game.draw(ctx);
         requestAnimationFrame(animate);
     }
-    animate();
+    animate(0);
 });
