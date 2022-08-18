@@ -16,6 +16,10 @@ export class Player {
         //frame animation
         this.frameX = 0;
         this.frameY = 0;
+        this.maxFrame = 5;
+        this.fps = 20;
+        this.frameInterval = 1000 / this.fps;
+        this.frameTimer = 0;
         this.speed = 0;
         this.maxSpeed = 10;
         //for vertical speed
@@ -31,7 +35,7 @@ export class Player {
         this.currentState = this.states[0];
         this.currentState.enter();
     }
-    update(input) {
+    update(input, deltaTime) {
         this.currentState.handleInput(input);
         //horizontal speed
         this.x += this.speed;
@@ -43,10 +47,18 @@ export class Player {
         else if (this.x >= this.game.width - this.width) this.x = this.game.width - this.width;
 
         //vertical movement
-        // if (input.includes('ArrowUp') && this.onGround()) this.vy -= 30;
         this.y += this.vy;
         if (!this.onGround()) this.vy += this.weight;
         else this.vy = 0;
+
+        //sprite animation
+        if (this.frameTimer > this.frameInterval) {
+            this.frameTimer = 0;
+            if (this.frameX < this.maxFrame) this.frameX++;
+            else this.frameX = 0;
+        } else {
+            this.frameTimer += deltaTime;
+        }
 
     }
 
