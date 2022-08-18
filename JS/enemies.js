@@ -15,6 +15,7 @@ class Enemy {
         if (this.frameTimer > this.frameInterval) {
             this.frameTimer = 0;
             if (this.frameX < this.maxFrame) this.frameX++;
+            else this.frameX = 0;
         } else {
             this.frameTimer += deltaTime;
         }
@@ -39,10 +40,14 @@ export class FlyingEnemy extends Enemy {
         this.speedY = 0;
         this.maxFrame = 5;
         this.image = enemy_fly
+        this.angle = 0;
+        this.va = Math.random() * 1 + 0.1;
     }
     update(deltaTime) {
         super.update(deltaTime);
-
+        //adds wavy movement 
+        this.angle += this.va;
+        this.y += Math.sin(this.angle);
     }
 }
 
