@@ -20,7 +20,7 @@ window.addEventListener('load', function () {
         }
         update() {
             //calls player update method
-            this.player.update();
+            this.player.update(this.input.keys);
         }
         draw(context) {
 
