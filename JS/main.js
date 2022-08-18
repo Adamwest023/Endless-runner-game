@@ -41,14 +41,23 @@ window.addEventListener('load', function () {
             } else {
                 this.enemyTimer += deltaTime;
             }
+            this.enemies.forEach(enemy => {
+                enemy.update(deltaTime);
+                if (enemy.markedForDeletion) this.enemies.splice(this.enemies.indexOf(enemy), 1);
+            });
         }
         draw(context) {
             this.background.draw(context);
             this.player.draw(context);
+            this.enemies.forEach(enemy => {
+                enemy.draw(context);
+            });
         }
         addEnemy() {
-            this.enemies.push(new FlyingEnemy(this))
+            this.enemies.push(new FlyingEnemy(this));
+            console.log(this.enemies);
         }
+
     }
 
     const game = new Game(canvas.width, canvas.height);
