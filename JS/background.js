@@ -9,8 +9,8 @@ class Layer {
         this.y = 0;
     }
     update() {
-        if (this.x < this.width) this.x = 0;
-        else this.x -= this.game.speed * this.speedModifier
+        if (this.x < -this.width) this.x = 0;
+        else this.x -= this.game.speed * this.speedModifier;
     }
     draw(context) {
         context.drawImage(this.image, this.x, this.y, this.width, this.height);
@@ -22,10 +22,19 @@ export class Background {
         this.game = game;
         this.width = 1667;
         this.height = 500;
-        this.Layer1image = layer1
-        this.Layer2image = layer2
-        this.Layer3image = layer3
-        this.Layer4image = layer4
-        this.Layer5image = layer5
+        this.layer5image = layer5
+        this.layer1 = new Layer(this.game, this.width, this.height, 1, this.layer5image);
+        this.backgroundLayers = [this.layer1]
     }
+    update() {
+        this.backgroundLayers.forEach(layer => {
+            layer.update();
+        })
+    }
+    draw(context) {
+        this.backgroundLayers.forEach(layer => {
+            layer.draw(context);
+        })
+    }
+
 }

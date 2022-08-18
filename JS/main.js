@@ -1,6 +1,7 @@
 //import outside files
 import { Player } from './player.js';
 import { InputHandler } from './input.js';
+import { Background } from './background.js';
 
 //waits for all of our elements to load before any code runs 
 window.addEventListener('load', function () {
@@ -16,15 +17,17 @@ window.addEventListener('load', function () {
             this.height = height;
             this.groundMargin = 50;
             this.speed = 3;
+            this.background = new Background(this);
             this.player = new Player(this);
             this.input = new InputHandler();
         }
         update(deltaTime) {
             //calls player update method
+            this.background.update();
             this.player.update(this.input.keys, deltaTime);
         }
         draw(context) {
-
+            this.background.draw(context);
             this.player.draw(context);
         }
     }
