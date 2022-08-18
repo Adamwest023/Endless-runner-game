@@ -11,7 +11,7 @@ export class Player {
         this.width = 100
         this.height = 91.3;
         this.x = 0;
-        this.y = this.game.height - this.height;
+        this.y = this.game.height - this.height - this.game.groundMargin;
         this.image = player;
         //frame animation
         this.frameX = 0;
@@ -68,7 +68,7 @@ export class Player {
     }
     //checks if sprite is on ground
     onGround() {
-        return this.y >= this.game.height - this.height;
+        return this.y >= this.game.height - this.height -this.game.groundMargin;
     }
     //lets us switch between states 
     setState(state) {
