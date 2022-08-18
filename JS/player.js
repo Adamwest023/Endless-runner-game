@@ -1,3 +1,4 @@
+import { Sitting } from './state.js'
 export class Player {
     //points to the game file
     constructor(game) {
@@ -7,11 +8,18 @@ export class Player {
         this.x = 0;
         this.y = this.game.height - this.height;
         this.image = player;
+        //frame animation
+        this.frameX = 0;
+        this.frameY = 0;
         this.speed = 0;
         this.maxSpeed = 10;
         //for vertical speed
         this.vy = 0;
         this.weight = 1;
+        //state design helper
+        this.states = [new Sitting(this)];
+        this.currentState = this.states[0];
+        this.currentState.enter();
     }
     update(input) {
         //horizontal speed
@@ -26,7 +34,7 @@ export class Player {
         //vertical movement
         if (input.includes('ArrowUp') && this.onGround()) this.vy -= 30;
         this.y += this.vy;
-        if(!this.onGround()) this.vy += this.weight;
+        if (!this.onGround()) this.vy += this.weight;
         else this.vy = 0;
 
     }
@@ -34,10 +42,15 @@ export class Player {
     draw(context) {
         //takes 3,5,9 arguments
         //image, 4X source,4x destination
-        context.drawImage(this.image, 0, 0, this.width, this.height, this.x, this.y, this.width, this.height);
+        context.drawImage(this.image, this.frameX * this.width, this.frameY * this.height, this.width, this.height, this.x, this.y, this.width, this.height);
     }
     //checks if sprite is on ground
     onGround() {
         return this.y >= this.game.height - this.height;
+    }
+    //lets us switch between states 
+    setState(state) {
+        this.currentState = this.states[state];
+        this.currentState.enter();
     }
 }
