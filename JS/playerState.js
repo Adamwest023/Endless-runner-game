@@ -1,4 +1,4 @@
-import { Dust } from './particles.js';
+import { Dust, Fire } from './particles.js';
 
 //create enum
 const states = {
@@ -106,6 +106,9 @@ export class Rolling extends State {
         this.game.player.maxFrame = 6;
     }
     handleInput(input) {
+        //handle fire
+        this.game.particles.push(new Fire(this.game, this.game.player.x + this.game.player.width * 0.5,
+            this.game.player.y + this.game.player.height * 0.5));
         if (!input.includes(' ') && this.game.player.onGround()) {
             this.game.player.setState(states.RUNNING, 1);
         } else if (!input.includes(' ') && !this.game.player.onGround()) {
