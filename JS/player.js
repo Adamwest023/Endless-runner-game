@@ -7,6 +7,8 @@ import {
     Diving,
     Hit
 } from './playerState.js'
+import { CollisionAnimation } from './collisionAnimation.js';
+
 export class Player {
     //points to the game file
     constructor(game) {
@@ -94,6 +96,8 @@ export class Player {
                 enemy.y + enemy.height > this.y) {
                 //collision detected
                 enemy.markedForDeletion = true;
+                this.game.collisions.push(new CollisionAnimation(this.game, enemy.x +
+                    enemy.width * 0.5, enemy.y + enemy.height * 0.5)); 
                 if (
                     this.currentState === this.states[4] ||
                     this.currentState === this.states[5]) {
