@@ -13,7 +13,7 @@ import { UI } from './UI.js';
 window.addEventListener('load', function () {
     const canvas = document.getElementById('canvas1');
     const ctx = canvas.getContext('2d');
-    canvas.width = 500;
+    canvas.width = 1500;
     canvas.height = 500;
 
     //main brain of project
@@ -37,8 +37,9 @@ window.addEventListener('load', function () {
             this.debug = false;
             this.score = 0;
             this.fontColor = 'black';
+            this.lives = 5;
             this.time = 0; 
-            this.maxTime = 10000;
+            this.maxTime = 10000000;
             this.gameOver = false;
             this.player.currentState = this.player.states[0];
             this.player.currentState.enter();
