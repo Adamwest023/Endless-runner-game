@@ -23,12 +23,12 @@ export class CollisionAnimation {
             this.sprightHeight, this.x, this.y, this.width, this.height);
     }
     update(deltaTime) {
-        this.x -= this.game.speed;
+        this.x -= this.game.speed; 
         if (this.frameTimer > this.frameInterval) {
             this.frameX++;
             this.frameTimer = 0;
         } else {
-            this.frameInterval += deltaTime;
+            this.frameTimer += deltaTime; 
         }
         if (this.frameX > this.maxFrame) this.markedForDeletion = true;
     }
