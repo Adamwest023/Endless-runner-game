@@ -31,13 +31,13 @@ export class UI {
             context.font = this.fontSize * 1 + 'px ' + this.fontFamily;
             context.fillText('Game Over ', this.game.width * 0.5,
                 this.game.height * 0.5 - 40);
-            if (this.game.score > 5) {
+            if (this.game.score >= this.game.winningScore) {
                 context.font = this.fontSize * 1 + 'px ' + this.fontFamily;
                 context.fillText('Your Score ' + this.game.score, this.game.width * 0.5,
                     this.game.height * 0.5);
                 context.fillText('Hope you had a smashing time!', this.game.width * 0.5,
                     this.game.height * 0.5 - 80);
-            } else if (this.game.score < 5) {
+            } else if (this.game.score < this.game.winningScore) {
                 context.font = this.fontSize * 1 + 'px ' + this.fontFamily;
                 context.fillText('Your Score ' + this.game.score, this.game.width * 0.5,
                     this.game.height * 0.5);
