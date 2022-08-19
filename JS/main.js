@@ -30,6 +30,7 @@ window.addEventListener('load', function () {
             this.enemyTimer = 0;
             this.enemyInterval = 1000;
             this.debug = true;
+            this.score = 0;
         }
         update(deltaTime) {
             //calls player update method

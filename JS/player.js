@@ -36,6 +36,7 @@ export class Player {
         this.currentState.enter();
     }
     update(input, deltaTime) {
+        this.checkCollision();
         this.currentState.handleInput(input);
         //horizontal speed
         this.x += this.speed;
@@ -63,19 +64,34 @@ export class Player {
 
     draw(context) {
         //debug mode
-        if(this.game.debug) context.strokeRect(this.x, this.y, this.width, this.height);
+        if (this.game.debug) context.strokeRect(this.x, this.y, this.width, this.height);
         //takes 3,5,9 arguments
         //image, 4X source,4x destination
         context.drawImage(this.image, this.frameX * this.width, this.frameY * this.height, this.width, this.height, this.x, this.y, this.width, this.height);
     }
     //checks if sprite is on ground
     onGround() {
-        return this.y >= this.game.height - this.height -this.game.groundMargin;
+        return this.y >= this.game.height - this.height - this.game.groundMargin;
     }
     //lets us switch between states 
-    setState(state,speed) {
+    setState(state, speed) {
         this.currentState = this.states[state];
         this.game.speed = this.game.maxSpeed * speed;
         this.currentState.enter();
+    }
+    //collision detection
+    checkCollision() {
+        this.game.enemies.forEach(enemy => {
+            if (
+                enemy.x < this.x + this.width &&
+                enemy.x + enemy.width > this.x &&
+                enemy.y < this.y + this.height &&
+                enemy.y + enemy.height > this.y) {
+                //collision detected
+                enemy.markedForDeletion = true;
+                this.game.score++;
+            } else {
+            }
+        })
     }
 }
