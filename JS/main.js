@@ -37,10 +37,16 @@ window.addEventListener('load', function () {
             this.debug = false;
             this.score = 0;
             this.fontColor = 'black';
+            this.time = 0; 
+            this.maxTime = 2000;
+            this.gameOver = false;
             this.player.currentState = this.player.states[0];
             this.player.currentState.enter();
         }
         update(deltaTime) {
+            //end game parameters
+            this.time += deltaTime;
+            if(this.time > this.maxTime) this.gameOver = true; 
             //calls player update method
             this.background.update();
             this.player.update(this.input.keys, deltaTime);
@@ -102,7 +108,7 @@ window.addEventListener('load', function () {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         game.update(deltaTime);
         game.draw(ctx);
-        requestAnimationFrame(animate);
+        if(!game.gameOver)requestAnimationFrame(animate);
     }
     animate(0);
 });
