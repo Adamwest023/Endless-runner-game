@@ -4,6 +4,7 @@ import {
     Jumping,
     Falling,
     Rolling,
+    Diving
 } from './playerState.js'
 export class Player {
     //points to the game file
@@ -33,8 +34,8 @@ export class Player {
             new Jumping(this.game),
             new Falling(this.game),
             new Rolling(this.game),
-        ];
-       
+            new Diving(this.game),
+        ];  
     }
     update(input, deltaTime) {
         this.checkCollision();
