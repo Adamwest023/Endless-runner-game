@@ -2,7 +2,8 @@ import {
     Sitting,
     Running,
     Jumping,
-    Falling
+    Falling,
+    Rolling,
 } from './playerState.js'
 export class Player {
     //points to the game file
@@ -30,7 +31,8 @@ export class Player {
             new Sitting(this),
             new Running(this),
             new Jumping(this),
-            new Falling(this)
+            new Falling(this),
+            new Rolling(this),
         ];
         this.currentState = this.states[0];
         this.currentState.enter();
