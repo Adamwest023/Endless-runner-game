@@ -11,4 +11,4 @@ export class UI {
         context.fillStyle =this.game.fontColor
         context.fillText('Score: ' + this.game.score,20,50);
     }
-}
+} 

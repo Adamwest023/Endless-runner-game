@@ -3,7 +3,6 @@ export class InputHandler {
         this.game = game;
         this.keys = [];
         window.addEventListener('keydown', e => {
-            console.log(e.key);
             //registers if a key is pressed and if it is the first time it has been added to the array
             if ((e.key === 'ArrowDown' ||
                 e.key === "ArrowUp" ||
@@ -13,8 +12,6 @@ export class InputHandler {
             ) && this.keys.indexOf(e.key) === -1) {
                 this.keys.push(e.key);
             }else if (e.key === 'd')this.game.debug = !this.game.debug
-            console.log(e.key);
-
         });
         //registers if a key is released and removes it from the array 
         window.addEventListener('keyup', e => {

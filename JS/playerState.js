@@ -1,4 +1,4 @@
-import {Dust} from './particles.js';
+import { Dust } from './particles.js';
 
 //create enum
 const states = {
@@ -11,7 +11,7 @@ const states = {
 }
 
 class State {
-    constructor(state,game) {
+    constructor(state, game) {
         this.state = state;
         this.game = game;
     }
@@ -19,7 +19,7 @@ class State {
 
 export class Sitting extends State {
     constructor(game) {
-        super("SITTING",game);
+        super("SITTING", game);
     }
     enter() {
         //resets our sprite to beginning of frame
@@ -41,7 +41,7 @@ export class Sitting extends State {
 
 export class Running extends State {
     constructor(game) {
-        super("RUNNING",game);
+        super("RUNNING", game);
     }
     enter() {
         this.game.player.frameX = 0;
@@ -50,6 +50,8 @@ export class Running extends State {
 
     }
     handleInput(input) {
+        this.game.particles.push(new Dust(this.game, this.game.player.x + this.game.player.width * 0.5,
+            this.game.player.y + this.game.player.height));
         if (input.includes('ArrowDown')) {
             this.game.player.setState(states.SITTING, 0);
         } else if (input.includes('ArrowUp')) {
@@ -62,7 +64,7 @@ export class Running extends State {
 
 export class Jumping extends State {
     constructor(game) {
-        super("JUMPING",game);
+        super("JUMPING", game);
     }
     enter() {
         if (this.game.player.onGround()) this.game.player.vy -= 25;
@@ -81,7 +83,7 @@ export class Jumping extends State {
 }
 export class Falling extends State {
     constructor(game) {
-        super("FALLING",game);
+        super("FALLING", game);
     }
     enter() {
         this.game.player.frameX = 0;
@@ -96,7 +98,7 @@ export class Falling extends State {
 }
 export class Rolling extends State {
     constructor(game) {
-        super("ROLLING",game);
+        super("ROLLING", game);
     }
     enter() {
         this.game.player.frameX = 0;
