@@ -8,6 +8,7 @@ const states = {
     FALLING: 3,
     ROLLING: 4,
     DIVING: 5,
+    HIT: 6
 }
 class State {
     constructor(state, game) {
@@ -146,6 +147,24 @@ export class Diving extends State {
             }
         } else if (input.includes(' ') && !this.game.player.onGround()) {
             this.game.player.setState(states.ROLLING, 2);
+        }
+    }
+}
+
+export class Hit extends State {
+    constructor(game) {
+        super('HIT', game);
+    }
+    enter() {
+        this.game.player.frameX = 0;
+        this.game.player.maxFrame = 10;
+        this.game.player.frameY = 4;
+    }
+    handleInput(input) {
+        if (this.game.player.frameX >= 10 && this.game.player.onGround()) {
+            this.game.player.setState(states.RUNNING, 1);
+        } else if (this.game.player.frameX >= 10 && !this.game.player.onGround()) {
+            this.game.player.setState(states.FALLING, 1);
         }
     }
 }
