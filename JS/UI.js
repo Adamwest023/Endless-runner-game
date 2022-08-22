@@ -39,7 +39,7 @@ export class UI {
                     this.game.height * 0.5 - 80);
             } else if (this.game.score < this.game.winningScore) {
                 context.font = this.fontSize * 1 + 'px ' + this.fontFamily;
-                context.fillText('Your Score ' + this.game.score, this.game.width * 0.5,
+                context.fillText('Your Score: ' + this.game.score, this.game.width * 0.5,
                     this.game.height * 0.5);
                 context.fillText('Better luck next time', this.game.width * 0.5,
                     this.game.height * 0.5 - 80);
