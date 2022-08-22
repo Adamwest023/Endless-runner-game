@@ -16,7 +16,8 @@ http://www.adamwestcreative.com/Endless-runner-game/
  # Future updates
  1. Add a start and restart game functionality
  2. Make mobile friendly
- 3. Add new levels based on score. 
+ 3. Add new levels based on score.
+ 4. Add sound effects
 
 
 # Disclaimer
